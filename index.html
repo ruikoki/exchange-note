@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交換ノート</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>交換ノート</h1>
+
+        <div class="messages" id="messages">
+            <div class="message">A：おはよう</div>
+            <div class="message">B：おはよう！</div>
+            <div class="message">A：今日どう？</div>
+        </div>
+
+        <hr>
+
+        <p>あなたの番です</p>
+
+        <textarea id="messageInput"  placeholder="メッセージを入力"></textarea>
+
+        <button id="sendButton">送信</button>
+
+        <hr>
+        <p>相手の入力（開発用）</p>
+
+        <textarea id="replyInput" placeholder="相手のメッセ―ジ"></textarea>
+
+        <button id="replyButton">相手が返信</button>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
