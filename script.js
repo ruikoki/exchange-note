@@ -1,4 +1,15 @@
+console.log("script loaded");
+
+const supabaseUrl = "https://vfocwywoupizsfetubzk.supabase.co";
+const supabaseKey = "sb_publishable_lqQbe0mELE1iBzwUkOeGvA_nCEJZ7IS";
+
+const supabaseClient = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
+
 let lastUser = "相手";
+
 
 let note = [];
 
@@ -33,7 +44,7 @@ function displayMessages(){
 
         const message = document.createElement("div");
 
-        message.className = "mesasge";
+        message.className = "message";
 
         message.textContent = 
              note[i].user + ":" + note [i].text;
@@ -95,3 +106,18 @@ if(saveNote){
 
     displayMessages();
 }
+
+console.log(supabaseClient);
+
+async function testSupabase() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("messages")
+            .select("*");
+
+    console.log("data:", data);
+    console.log("error:", error);
+}
+
+testSupabase();
