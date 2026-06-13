@@ -25,6 +25,17 @@ function addMessage(user,text){
 
     displayMessages();
   
+    supabaseClient
+    .from("messages")
+    .insert([
+        {
+            user: user,
+            text: text
+        }
+    ])
+    .then(({ error }) => {
+        console.log("保存結果:", error);
+    });
 
 }
 
