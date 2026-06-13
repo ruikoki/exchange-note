@@ -14,16 +14,20 @@ let lastUser = "相手";
 let note = [];
 
 
-function addMessage(user,text){
+async function addMessage(user,text){
 
-    note.push({
-        user: user,
-        text: text
-    }) ;
+   const { error } =
+       await supabaseClient
+          .from("messages")
+          .insert([
+            {
+                user: user;
+                text: text
+            }
+          ]);
+        
 
-
-
-    displayMessages();
+console.log("保存結果:", error);
   
     supabaseClient
     .from("messages")
@@ -65,7 +69,7 @@ function displayMessages(){
 }
 
 
-button.addEventListener("click", function () {
+button.addEventListener("click", async function () {
     if (lastUser === "あなた"){
         alert("相手の返信待ちです");
         return;
@@ -79,13 +83,14 @@ button.addEventListener("click", function () {
         return;
     }
 
-   addMessage("あなた", text);
+   await addMessage("あなた", text);
+
     lastUser = "あなた";
 
     input.value = "";
 });
 
-replyButton.addEventListener("click", function(){
+replyButton.addEventListener("click", async function() {
 
     if(lastUser === "相手"){
         alert("あなたの返信待ちです");
@@ -101,7 +106,7 @@ replyButton.addEventListener("click", function(){
 
     }
 
-    addMessage("相手",text);
+    await addMessage("相手",text);
 
     lastUser = "相手";
 
