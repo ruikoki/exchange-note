@@ -117,7 +117,8 @@ async function loadMessages() {
     const { data, error } =
         await supabaseClient
             .from("messages")
-            .select("*");
+            .select("*")
+            .order("id");
 
     if(error){
         console.log(error);
@@ -140,8 +141,11 @@ supabaseClient
         schema: "public",
         table: "messages"
     },
-    () => {
-        loadMessages();
+    async () => {
+       
+        console .log("新着メッセージ");
+
+        await loadMessages();
     }
 )
 .subscribe();
