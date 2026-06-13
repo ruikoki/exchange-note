@@ -21,7 +21,7 @@ async function addMessage(user,text){
           .from("messages")
           .insert([
             {
-                user: user;
+                user: user,
                 text: text
             }
           ]);
