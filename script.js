@@ -26,20 +26,8 @@ async function addMessage(user,text){
             }
           ]);
         
-
 console.log("保存結果:", error);
   
-    supabaseClient
-    .from("messages")
-    .insert([
-        {
-            user: user,
-            text: text
-        }
-    ])
-    .then(({ error }) => {
-        console.log("保存結果:", error);
-    });
 
 }
 
@@ -146,6 +134,7 @@ supabaseClient
         schema: "public",
         table: "messages"
     },
+
     async () => {
        
         console .log("新着メッセージ");
@@ -153,4 +142,8 @@ supabaseClient
         await loadMessages();
     }
 )
-.subscribe();
+.subscribe((status) => {
+
+    console.log("Realtime:", status);
+    
+});
