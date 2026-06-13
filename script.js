@@ -130,14 +130,14 @@ supabaseClient
 .on(
     "postgres_changes",
     {
-        event: "INSERT",
+        event: "*",
         schema: "public",
         table: "messages"
     },
 
-    async () => {
+    async (payload) => {
        
-        console .log("新着メッセージ");
+        console .log("Realtime受信:", payload);
 
         await loadMessages();
     }
@@ -145,5 +145,5 @@ supabaseClient
 .subscribe((status) => {
 
     console.log("Realtime:", status);
-    
+
 });
