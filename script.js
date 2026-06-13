@@ -21,7 +21,7 @@ function addMessage(user,text){
         text: text
     }) ;
 
-    localStorage.setItem("note", JSON.stringify(note));
+
 
     displayMessages();
   
@@ -109,26 +109,24 @@ replyButton.addEventListener("click", function(){
 
 });
 
-const saveNote = localStorage.getItem("note");
-
-if(saveNote){
-
-    note = JSON.parse(saveNote);
-
-    displayMessages();
-}
 
 console.log(supabaseClient);
 
-async function testSupabase() {
+async function loadMessages() {
 
     const { data, error } =
         await supabaseClient
             .from("messages")
             .select("*");
 
-    console.log("data:", data);
-    console.log("error:", error);
+    if(error){
+        console.log(error);
+        return;
+    }        
+
+    note = data;
+
+    displayMessages();
 }
 
-testSupabase();
+loadMessages();    
