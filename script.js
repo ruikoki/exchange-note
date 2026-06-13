@@ -130,3 +130,18 @@ async function loadMessages() {
 }
 
 loadMessages();    
+
+supabaseClient
+.channel("messages-channel")
+.on(
+    "postgres_changes",
+    {
+        event: "INSERT",
+        schema: "public",
+        table: "messages"
+    },
+    () => {
+        loadMessages();
+    }
+)
+.subscribe();
