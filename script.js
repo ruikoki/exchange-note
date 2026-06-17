@@ -8,6 +8,13 @@ const supabaseClient = window.supabase.createClient(
     supabaseKey
 );
 
+const params = new URLSearchParams(window.location.search);
+
+const room = 
+    params.get ("room") || "default";
+
+console.log("room:", room);
+
 let lastUser = "相手";
 
 
@@ -22,7 +29,8 @@ async function addMessage(user,text){
           .insert([
             {
                 user: user,
-                text: text
+                text: text,
+                room: room
             }
           ]);
         
@@ -111,6 +119,7 @@ async function loadMessages() {
         await supabaseClient
             .from("messages")
             .select("*")
+            .eq("room",room)
             .order("id");
 
     if(error){
