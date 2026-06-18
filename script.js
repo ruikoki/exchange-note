@@ -46,6 +46,37 @@ const button = document.getElementById("sendButton");
 const messages = document.getElementById("messages");
 const replyButton = document.getElementById("replyButton");
 const replyInput =document.getElementById("replyInput");
+const loginButton = 
+document.getElementById("loginButton");
+
+const userNameInput = 
+document.getElementById("userName");
+
+let currentUser = "";
+
+
+loginButton.addEventListener(
+    "click",
+
+    function(){
+
+        currentUser = 
+        userNameInput.value;
+
+        if(currentUser ===""){
+
+            alert("名前を入力してください");
+
+            return;
+        }
+
+        alert(
+            currentUser + 
+            "でログインしました"
+        );
+
+    }
+);
 
 function displayMessages(){
 
@@ -79,8 +110,18 @@ button.addEventListener("click", async function () {
         return;
     }
 
-   await addMessage("あなた", text);
+  if(currentUser===""){
 
+    alert("ログインしてください");
+
+    return;
+
+  }
+
+  await addMessage(
+    currentUser,
+    text
+  );
     lastUser = "あなた";
 
     input.value = "";
@@ -88,12 +129,7 @@ button.addEventListener("click", async function () {
 
 replyButton.addEventListener("click", async function() {
 
-    if(lastUser === "相手"){
-        alert("あなたの返信待ちです");
-        return;
-
-    }
-
+  
     const text = replyInput.value;
 
     if(text === ""){
@@ -102,9 +138,14 @@ replyButton.addEventListener("click", async function() {
 
     }
 
-    await addMessage("相手",text);
+    if(currentUser ===""){
 
-    lastUser = "相手";
+        alert("ログインしてください");
+
+        return;
+    }
+
+    await addMessage(currentUser,text);
 
     replyInput.value = "";
 
@@ -136,23 +177,37 @@ loadMessages();
 
 supabaseClient
 .channel("messages-channel")
+
 .on(
     "postgres_changes",
     {
-        event: "*",
+        event: "INSERT",
         schema: "public",
         table: "messages"
     },
 
     async (payload) => {
        
-        console .log("Realtime受信:", payload);
+        console.log("Realtime受信:", payload);
 
-        await loadMessages();
+if(
+    payload.new.room
+    ===
+    room
+){
+
+await loadMessages();
+
+}
+
     }
+    
 )
 .subscribe((status) => {
 
     console.log("Realtime:", status);
 
-});
+}
+);
+
+
