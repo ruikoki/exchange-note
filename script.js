@@ -77,10 +77,6 @@ loginButton.addEventListener(
         currentUser = 
         userNameInput.value;
 
-        localStorage.setItem(
-            "user",
-            currentUser
-        );
 
         if(currentUser ===""){
 
@@ -88,6 +84,11 @@ loginButton.addEventListener(
 
             return;
         }
+
+         localStorage.setItem(
+            "user",
+            currentUser
+        );
 
         alert(
             currentUser + 
