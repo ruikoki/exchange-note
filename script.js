@@ -54,6 +54,20 @@ document.getElementById("userName");
 
 let currentUser = "";
 
+const saveUser = 
+localStorage.getItem(
+    "user"
+);
+
+if(saveUser){
+
+
+    currentUser = 
+    saveUser;
+
+    userNameInput.value = 
+    saveUser;
+}
 
 loginButton.addEventListener(
     "click",
@@ -62,6 +76,11 @@ loginButton.addEventListener(
 
         currentUser = 
         userNameInput.value;
+
+        localStorage.setItem(
+            "user",
+            currentUser
+        );
 
         if(currentUser ===""){
 
