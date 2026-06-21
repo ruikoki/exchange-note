@@ -45,9 +45,11 @@ const input = document.getElementById("messageInput");
 const button = document.getElementById("sendButton");
 const messages = document.getElementById("messages");
 const replyButton = document.getElementById("replyButton");
-const replyInput =document.getElementById("replyInput");
+const replyInput = document.getElementById("replyInput");
 const loginButton = 
 document.getElementById("loginButton");
+const logoutButton = 
+document.getElementById("logoutButton")
 
 const userNameInput = 
 document.getElementById("userName");
@@ -95,6 +97,26 @@ loginButton.addEventListener(
             "でログインしました"
         );
 
+    }
+);
+
+logoutButton.addEventListener(
+
+    "click",
+
+    function(){
+
+        localStorage.removeItem(
+            "user"
+        );
+
+        currentUser = "";
+
+        userNameInput.value = "";
+
+        alert(
+            "ログアウトしました"
+        );
     }
 );
 
