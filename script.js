@@ -56,6 +56,11 @@ document.getElementById(
     "copyRoomButton"
 );
 
+const createRoomButton =
+document.getElementById(
+    "createRoomButton"
+);
+
 const userNameInput = 
 document.getElementById("userName");
 
@@ -147,6 +152,29 @@ copyRoomButton.addEventListener(
         alert(
             "招待リンクをコピーしました"
         );
+    }
+);
+
+createRoomButton.addEventListener(
+
+    "click",
+
+    function(){
+    
+    const newRoom =
+    
+    Math.random()
+    .toString(36)
+    .slice(2,8);
+
+    window.location.href =
+
+    window.location.origin
+    +
+    "/?room="
+    +
+    newRoom;
+
     }
 );
 
