@@ -51,6 +51,11 @@ document.getElementById("loginButton");
 const logoutButton = 
 document.getElementById("logoutButton")
 
+const copyRoomButton = 
+document.getElementById(
+    "copyRoomButton"
+);
+
 const userNameInput = 
 document.getElementById("userName");
 
@@ -116,6 +121,31 @@ logoutButton.addEventListener(
 
         alert(
             "ログアウトしました"
+        );
+    }
+);
+
+copyRoomButton.addEventListener(
+
+    "click",
+
+    async function(){
+
+        const url =
+
+        window.location.origin
+        +
+        "/?room="
+        +
+        room;
+
+        await navigator.clipboard
+        .writeText(
+            url
+        );
+
+        alert(
+            "招待リンクをコピーしました"
         );
     }
 );
