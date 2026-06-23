@@ -5,7 +5,7 @@ body{
 
 }
 
-.contaiter{
+.container{
     max-width: 600px;
     margin:50px auto;
     background: white;
@@ -19,6 +19,7 @@ body{
     margin: 10px 0;
     background: #eeeeee;
     border-radius: 8px;
+    white-space: pre-line;
 }
 
 textarea{

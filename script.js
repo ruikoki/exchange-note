@@ -30,7 +30,18 @@ async function addMessage(user,text){
             {
                 user: user,
                 text: text,
-                room: room
+                room: room,
+
+                time:
+
+                new Date()
+                .toLocaleTimeString(
+                    "ja-JP",
+                    {
+                        hour:"2-digit",
+                        minute:"2-digit"
+                    }
+                )
             }
           ]);
         
@@ -189,7 +200,15 @@ function displayMessages(){
         message.className = "message";
 
         message.textContent = 
-             note[i].user + ":" + note [i].text;
+             note[i].user
+              + 
+              " " 
+              + 
+              (note [i].time || "")
+             +
+             "\n"
+             +
+             note[i].text;
 
         messages.appendChild(message);          
     }
