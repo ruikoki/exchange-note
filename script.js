@@ -197,18 +197,42 @@ function displayMessages(){
 
         const message = document.createElement("div");
 
-        message.className = "message";
+        if(
+            note[i].user
+            ===
+            currentUser
+        ){
 
-        message.textContent = 
-             note[i].user
-              + 
-              " " 
-              + 
-              (note [i].time || "")
-             +
-             "\n"
-             +
-             note[i].text;
+            message.className =
+            "message mine";
+
+        }
+        else{
+
+            message.className =
+            "message other";
+        }
+
+       message.innerHTML =
+
+       "<small>"
+
+       +
+
+       " "
+    
+       +
+
+       (note[i].time || "")
+
+       +
+
+       "<small><br>"
+
+       +
+
+       note[i].text;
+
 
         messages.appendChild(message);          
     }

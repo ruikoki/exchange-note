@@ -15,11 +15,12 @@ body{
 }
 
 .message{
-    padding: 10px;
-    margin: 10px 0;
-    background: #eeeeee;
-    border-radius: 8px;
+    padding: 12px;
+    margin: 10px;
+    border-radius:15px;
+    max-width:70px;
     white-space: pre-line;
+    word-break:break-word;
 }
 
 textarea{
@@ -28,7 +29,25 @@ textarea{
     margin-top: 10px;
 
 }
+
 button{
     margin-top: 10px;
     padding: 10px 20px;
+}
+
+.mine{
+    background:#95ec69;
+    margin-left:auto;
+    text-align:left;
+}
+
+.other{
+    background:white;
+    margin-right:auto;
+}
+
+small{
+    color:#666;
+
+    font-size:12px;
 }
