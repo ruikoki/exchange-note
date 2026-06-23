@@ -18,7 +18,7 @@ body{
     padding: 12px;
     margin: 10px;
     border-radius:15px;
-    max-width:70px;
+    max-width:70%;
     white-space: pre-line;
     word-break:break-word;
 }

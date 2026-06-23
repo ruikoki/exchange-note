@@ -219,6 +219,10 @@ function displayMessages(){
 
        +
 
+       note[i].user
+
+       +
+
        " "
     
        +
@@ -227,7 +231,7 @@ function displayMessages(){
 
        +
 
-       "<small><br>"
+       "</small><br>"
 
        +
 
